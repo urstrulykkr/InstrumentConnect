@@ -10,13 +10,13 @@ const ExecutionOrder = ({ instruments, handleExecutionOrderChange }) => {
     <div className='execute-container'>
       <h3 className='execute-container__title'>Set Execution Order in Queue:</h3>
       <ul className='execute-container__order'>
-        {selectedInstruments.map((instrument, index) => (
+        {selectedInstruments.map((instrument) => (
           <li key={`executionOrder_${instrument.id}`}>
             {instrument.name}:
             <select
               className='execute-container__order__select'
               value={instrument.executionOrder}
-              onChange={(e) => handleExecutionOrderChange(index, e.target.value)}
+              onChange={(e) => handleExecutionOrderChange(instrument.id, e.target.value)}
             >
               {selectedInstruments.map((selectedInstrument, selectedIndex) => (
                 <option key={`priority_${selectedInstrument.id}_${selectedIndex}`} value={selectedIndex + 1}>

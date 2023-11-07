@@ -24,9 +24,9 @@ function App() {
   };
 
 
-  const handleExecutionOrderChange = (index, value) => {
+  const handleExecutionOrderChange = (id, value) => {
     const updatedInstruments = [...instruments];
-    updatedInstruments[index].executionOrder = parseInt(value);
+    updatedInstruments.find((ele)=> ele.id === id).executionOrder = parseInt(value);
     setInstruments(updatedInstruments);
   };
   
