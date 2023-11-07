@@ -7,10 +7,10 @@ import ExperimentSettings from './components/ExperimentSettings';
 
 function App() {
   const [instruments, setInstruments] = useState([
-    { id: 1, name: 'Thorlabs APT', selected: false, executionOrder: '' },
-    { id: 2, name: 'LightField', selected: false, executionOrder: '' },
-    { id: 3, name: 'Keithley 2450', selected: false, executionOrder: '' },
-    { id: 4, name: 'American Magnets 430', selected: false, executionOrder: '' },
+    { id: 1, name: 'Thorlabs APT', selected: false, executionOrder: 1 },
+    { id: 2, name: 'LightField', selected: false, executionOrder: 1 },
+    { id: 3, name: 'Keithley 2450', selected: false, executionOrder: 1 },
+    { id: 4, name: 'American Magnets 430', selected: false, executionOrder: 1 },
   ]);
 
   const [initialParams, setInitialParams] = useState('');
@@ -47,13 +47,32 @@ function App() {
     }
   };
 
+  const isValidPriority = (instruments) => {
+    const seenExecutionOrders = new Set();
+    let isUnique = true;
+    instruments.forEach((inst) => {
+      if (inst.selected) {
+        const executionOrder = inst.executionOrder;
+        if (seenExecutionOrders.has(executionOrder)) {
+          isUnique = false;
+        }
+        seenExecutionOrders.add(executionOrder);
+      }
+    });
+    return isUnique;
+  };
+
   const startExperiment = () => {
+    if(isValidPriority(instruments)) {
+      console.log('Experiment started');
+      console.log('Selected Instruments:', instruments);
+      console.log('Initial Parameters:', initialParams);
+      console.log('Step Size:', stepSize);
+      console.log('Total Steps:', totalSteps);
+    } else {
+      console.log(`WRONG! WRONG! WRONG!`);
+    }
     // Implement the logic to interact with the selected instruments
-    console.log('Experiment started');
-    console.log('Selected Instruments:', instruments);
-    console.log('Initial Parameters:', initialParams);
-    console.log('Step Size:', stepSize);
-    console.log('Total Steps:', totalSteps);
   };
 
   return (
