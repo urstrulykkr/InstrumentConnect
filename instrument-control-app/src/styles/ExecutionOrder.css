@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Signika+Negative&display=swap');
+
+.execute-container {
+    display: flex;
+    flex-flow: row nowrap;
+    padding-left: 20px;
+
+    .execute-container__title {
+        font-family: 'Signika Negative', sans-serif;
+
+
+    }
+
+    .execute-container__order {
+        list-style-type: none; 
+        padding: 0;
+        margin-left: 40px;
+        margin-top: 50px;
+        display: flex;
+        flex-flow: column nowrap;
+
+    }
+
+    .execute-container__order li::marker {
+        content: "💻"; /* Set the content to the computer emoji */
+        color: #007bff; /* Set the color of the emoji */
+        font-size: 15px; /* Adjust the font size as needed */
+        margin-bottom: 15px;
+    }
+
+    .execute-container__order__select {
+        margin-left: 20px;
+        margin-bottom: 15px;
+
+    }
+
+}

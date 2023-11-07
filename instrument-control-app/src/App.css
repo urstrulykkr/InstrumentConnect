@@ -1,0 +1,72 @@
+  @import url('https://fonts.googleapis.com/css2?family=Signika+Negative&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Sometype+Mono:wght@700&display=swap');
+  
+  .App {
+  .title {
+  background: linear-gradient(90deg, #A106F4, #3D5AB8);
+  color: #fff;
+  text-align: center;
+  margin: 0;
+  padding: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.55);
+  font-family: 'Sometype Mono', monospace;
+
+}
+
+  .run-experiment-button {
+    color: #fff;
+    background: linear-gradient(90deg, #A106F4, #3D5AB8);
+    border-radius: 5px;
+    font-weight: bold;
+    font-family: 'Sometype Mono', monospace;
+    margin: 20px auto;
+    display: block;
+    width: 200px;
+    padding: 15px 30px;
+    border: none;
+    transition: #0056b3 0.3s ease !important;
+    cursor: pointer;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.55);
+    font-size: 17px;
+
+  }
+
+  .run-experiment-button:hover {
+    background: linear-gradient(90deg, #0056b3, #3D5AB8); /* Change the background color on hover */
+  }
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
