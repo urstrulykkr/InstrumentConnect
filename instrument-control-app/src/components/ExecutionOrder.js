@@ -2,6 +2,13 @@
 
 import React from 'react';
 import '../styles/ExecutionOrder.css';
+import {
+  Tag,
+  TagLabel,
+  TagLeftIcon,
+  TagRightIcon,
+  TagCloseButton,
+} from '@chakra-ui/react'
 
 const ExecutionOrder = ({ instruments, handleExecutionOrderChange }) => {
   const selectedInstruments = instruments.filter((instrument) => instrument.selected);
@@ -12,7 +19,7 @@ const ExecutionOrder = ({ instruments, handleExecutionOrderChange }) => {
       <ul className='execute-container__order'>
         {selectedInstruments.map((instrument) => (
           <li key={`executionOrder_${instrument.id}`}>
-            {instrument.name}:
+            <Tag colorScheme='cyan' size='md'>{instrument.name}</Tag>:
             <select
               className='execute-container__order__select'
               value={instrument.executionOrder}
@@ -32,3 +39,4 @@ const ExecutionOrder = ({ instruments, handleExecutionOrderChange }) => {
 };
 
 export default ExecutionOrder;
+

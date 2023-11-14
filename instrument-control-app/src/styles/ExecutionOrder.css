@@ -7,22 +7,21 @@
 
     .execute-container__title {
         font-family: 'Signika Negative', sans-serif;
+        width: 20%;
 
 
     }
 
     .execute-container__order {
         list-style-type: none; 
-        padding: 0;
-        margin-left: 40px;
-        margin-top: 50px;
+        padding: 20px;
         display: flex;
         flex-flow: column nowrap;
+        width: 100%;
 
     }
 
     .execute-container__order li::marker {
-        content: "💻"; /* Set the content to the computer emoji */
         color: #007bff; /* Set the color of the emoji */
         font-size: 15px; /* Adjust the font size as needed */
         margin-bottom: 15px;
@@ -31,6 +30,7 @@
     .execute-container__order__select {
         margin-left: 20px;
         margin-bottom: 15px;
+        width: 10%;
 
     }
 

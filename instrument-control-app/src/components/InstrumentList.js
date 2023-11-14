@@ -1,24 +1,31 @@
 import React from 'react';
 import '../styles/InstrumentList.css'
+import { Switch } from '@chakra-ui/react'
+import {
+  FormControl,
+  FormLabel,
+} from '@chakra-ui/react'
 
 const InstrumentList = ({ instruments, handleInstrumentSelection }) => {
   return (
     <div className='instrument-list-container'>
-      <h3 className='instrument-list-container__title'>Select Instruments:</h3>
-      <div className='list'>
-      {instruments.map((instrument, index) => (
+      <FormControl>
+        <FormLabel className='instrument-list-container__title'>Select Instruments:</FormLabel>
+        <div className='list'>
+          {instruments.map((instrument, index) => (
             <div key={index}>
-            <input
-                type="checkbox"
+              <Switch
                 id={instrument.name}
                 name={instrument.name}
-                checked={instrument.selected}
+                isChecked={instrument.selected}
                 onChange={() => handleInstrumentSelection(index)}
-            />
-            <label htmlFor={instrument.name}>{instrument.name}</label>
+              >
+                {instrument.name}
+              </Switch>
             </div>
-      ))}
-     </div>
+          ))}
+        </div>
+      </FormControl>
     </div>
   );
 };
