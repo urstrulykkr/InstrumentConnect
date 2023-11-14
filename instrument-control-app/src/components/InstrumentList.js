@@ -3,6 +3,7 @@ import '../styles/InstrumentList.css'
 import { Switch } from '@chakra-ui/react'
 import {
   FormControl,
+  Heading,
   FormLabel,
 } from '@chakra-ui/react'
 
@@ -10,7 +11,11 @@ const InstrumentList = ({ instruments, handleInstrumentSelection }) => {
   return (
     <div className='instrument-list-container'>
       <FormControl>
-        <FormLabel className='instrument-list-container__title'>Select Instruments:</FormLabel>
+      {/* <Heading className='execute-container__title'>Set Execution Order in Queue:</Heading> */}
+        <FormLabel className='instrument-list-container__title'>
+        <Heading as="h3">
+          Select Instruments:
+        </Heading></FormLabel>
         <div className='list'>
           {instruments.map((instrument, index) => (
             <div key={index}>

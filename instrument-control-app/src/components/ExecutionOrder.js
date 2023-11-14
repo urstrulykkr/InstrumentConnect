@@ -3,11 +3,8 @@
 import React from 'react';
 import '../styles/ExecutionOrder.css';
 import {
-  Tag,
-  TagLabel,
-  TagLeftIcon,
-  TagRightIcon,
-  TagCloseButton,
+  Heading,
+  Tag
 } from '@chakra-ui/react'
 
 const ExecutionOrder = ({ instruments, handleExecutionOrderChange }) => {
@@ -15,7 +12,7 @@ const ExecutionOrder = ({ instruments, handleExecutionOrderChange }) => {
 
   return (
     <div className='execute-container'>
-      <h3 className='execute-container__title'>Set Execution Order in Queue:</h3>
+      <Heading as="h3" className='execute-container__title'>Set Execution Order in Queue:</Heading>
       <ul className='execute-container__order'>
         {selectedInstruments.map((instrument) => (
           <li key={`executionOrder_${instrument.id}`}>

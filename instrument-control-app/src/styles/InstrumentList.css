@@ -8,5 +8,9 @@
     padding: 20px;
     font-family: 'Signika Negative', sans-serif;
 
-    
+}
+
+.instrument-list-container__title h3{
+    font-size: 18px;
+    font-family: 'Signika Negative', sans-serif;
 }
