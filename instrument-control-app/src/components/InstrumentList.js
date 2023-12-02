@@ -11,7 +11,6 @@ const InstrumentList = ({ instruments, handleInstrumentSelection }) => {
   return (
     <div className='instrument-list-container'>
       <FormControl>
-      {/* <Heading className='execute-container__title'>Set Execution Order in Queue:</Heading> */}
         <FormLabel className='instrument-list-container__title'>
         <Heading as="h3">
           Select Instruments:

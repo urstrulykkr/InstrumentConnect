@@ -20,6 +20,15 @@
         flex-flow: column nowrap;
         width: 100%;
 
+        .settings-button {
+            color: #fff;
+            background: linear-gradient(90deg, #A106F4, #3D5AB8);
+            border-radius: 5px;
+            font-weight: bold;
+            font-family: 'Sometype Mono', monospace;
+            padding: 10px;
+        }
+
     }
 
     .execute-container__order li::marker {

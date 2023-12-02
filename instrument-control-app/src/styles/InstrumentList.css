@@ -3,7 +3,7 @@
 
 .instrument-list-container {
     display: flex;
-    flex-flow: column nowrap;
+    flex-flow: row nowrap;
     color: #111827;
     padding: 20px;
     font-family: 'Signika Negative', sans-serif;
