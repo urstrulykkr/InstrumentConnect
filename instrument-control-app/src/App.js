@@ -13,13 +13,26 @@ import {
 import './App.css';
 import InstrumentList from './components/InstrumentList';
 import ExecutionOrder from './components/ExecutionOrder';
+import DetectorList from './components/DataCollection';
 
 function App() {
   const [instruments, setInstruments] = useState([
-    { id: 1, name: 'Thorlabs APT', selected: false, executionOrder: 1 },
-    { id: 2, name: 'LightField', selected: false, executionOrder: 1 },
-    { id: 3, name: 'Keithley 2450', selected: false, executionOrder: 1 },
-    { id: 4, name: 'American Magnets 430', selected: false, executionOrder: 1 },
+    { id: 1, name: 'Thorlabs APT #1', selected: false, executionOrder: 1 },
+    { id: 2, name: 'Thorlabs APT #2', selected: false, executionOrder: 1 },
+    { id: 3, name: 'Thorlabs APT #3', selected: false, executionOrder: 1 },
+    { id: 4, name: 'Keithley 2450 #1', selected: false, executionOrder: 1 },
+    { id: 5, name: 'Keithley 2450 #2', selected: false, executionOrder: 1 },
+    { id: 6, name: 'Keithley 2450 #3', selected: false, executionOrder: 1 },
+    { id: 7, name: 'American Magnets 430 #1', selected: false, executionOrder: 1 },
+    { id: 8, name: 'American Magnets 430 #2', selected: false, executionOrder: 1 },
+    { id: 9, name: 'American Magnets 430 #3', selected: false, executionOrder: 1 },
+  ]);
+  
+  // You can replace 'New Instrument 1', 'New Instrument 2', 'New Instrument 3' with the actual names of your new instruments.
+  
+
+  const [detectors, setDetectors] = useState([
+    { id: 1, name: 'LightField', selected: false, executionOrder: 1 },
   ]);
 
   const [initialParams, setInitialParams] = useState('');
@@ -33,6 +46,12 @@ function App() {
     updatedInstruments[index].selected = !updatedInstruments[index].selected;
     setInstruments(updatedInstruments);
   };
+
+  const handleDetectorSelection = (index) => {
+    const updatedDetectors = [...detectors];
+    updatedDetectors[index].selected = !updatedDetectors[index].selected;
+    setDetectors(updatedDetectors);
+  }
 
   const handleExecutionOrderChange = (id, value) => {
     const updatedInstruments = [...instruments];
@@ -73,16 +92,10 @@ function App() {
 
   const startExperiment = () => {
     if (isValidPriority(instruments)) {
-      // console.log('Experiment started');
-      // console.log('Selected Instruments:', instruments);
-      // console.log('Initial Parameters:', initialParams);
-      // console.log('Step Size:', stepSize);
-      // console.log('Total Steps:', totalSteps);
       console.log("ALL GOOD!")
     } else {
       setIsOpen(true);
     }
-    // Implement the logic to interact with the selected instruments
   };
 
   const onClose = () => setIsOpen(false);
@@ -90,19 +103,17 @@ function App() {
   return (
     <div className="App">
       <h1 className="title">Instrument Control</h1>
+      <div className='operations'>
       <InstrumentList instruments={instruments} handleInstrumentSelection={handleInstrumentSelection} />
+      <DetectorList detectors={detectors} handleDetectorSelection={handleDetectorSelection} />
+      </div>
       <ExecutionOrder instruments={instruments} handleExecutionOrderChange={handleExecutionOrderChange} />
-      {/* <ExperimentSettings
-        initialParams={initialParams}
-        stepSize={stepSize}
-        totalSteps={totalSteps}
-        handleSettingChange={handleSettingChange}
-      /> */}
+
+
       <button className="run-experiment-button" onClick={startExperiment}>
         Run Experiment
       </button>
 
-      {/* AlertDialog */}
       <AlertDialog isOpen={isOpen} leastDestructiveRef={cancelRef} onClose={onClose}>
         <AlertDialogOverlay>
           <AlertDialogContent>

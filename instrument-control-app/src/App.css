@@ -14,6 +14,10 @@
 
 }
 
+.operations {
+  display: flex;
+}
+
   .run-experiment-button {
     color: #fff;
     background: linear-gradient(90deg, #A106F4, #3D5AB8);
