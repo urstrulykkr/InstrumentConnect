@@ -1,5 +1,4 @@
 
-
 import React, { useState } from 'react';
 import '../styles/ExecutionOrder.css';
 import {
@@ -9,26 +8,45 @@ import {
   ModalOverlay,
   ModalContent,
   ModalHeader,
-  ModalFooter,
   ModalBody,
   ModalCloseButton,
 } from '@chakra-ui/react';
-import ExperimentSettings from './ExperimentSettings'; // Make sure to provide the correct path to your ExperimentSettings component
+import ThorlabsAPT from './ThorlabsAPT'; // Import your custom components
+import Keithley from './Keithley';
+import AmericanMagnets from './AmericanMagnets';
+// import ComponentD from './ComponentD';
 
 const ExecutionOrder = ({ instruments, handleExecutionOrderChange }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedInstrument, setSelectedInstrument] = useState(null);
+  const [currentComponent, setCurrentComponent] = useState(null);
 
   const openModal = (instrument) => {
     setSelectedInstrument(instrument);
     setIsOpen(true);
+    // Set the appropriate component based on the selected instrument
+    setCurrentComponent(getComponentForInstrument(instrument));
   };
 
   const closeModal = () => {
     console.log('data must be saved');
     setSelectedInstrument(null);
     setIsOpen(false);
+    setCurrentComponent(null); // Reset the current component when closing the modal
   };
+
+  const getComponentForInstrument = (instrument) => {
+    if (instrument.name.includes("Thorlabs APT")) {
+      return <ThorlabsAPT />;
+    } else if (instrument.name.includes('Keithley')) {
+      return <Keithley/>;
+    } else if (instrument.name.includes('American Magnets')) {
+      return <AmericanMagnets/>;
+    }
+  
+    return null;
+  };
+  
 
   const selectedInstruments = instruments.filter((instrument) => instrument.selected);
 
@@ -40,7 +58,8 @@ const ExecutionOrder = ({ instruments, handleExecutionOrderChange }) => {
       <ul className='execute-container__order'>
         {selectedInstruments.map((instrument) => (
           <li key={`executionOrder_${instrument.id}`}>
-            <Button className='settings-button'
+            <Button
+              className='settings-button'
               size='md'
               onClick={() => openModal(instrument)}
             >
@@ -67,26 +86,14 @@ const ExecutionOrder = ({ instruments, handleExecutionOrderChange }) => {
 
       {/* Modal */}
       <Modal isOpen={isOpen} onClose={closeModal}>
-        <ModalOverlay />    
+        <ModalOverlay />
         <ModalContent>
           <ModalHeader>{selectedInstrument?.name}</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            {/* Include the ExperimentSettings component here */}
-            <ExperimentSettings 
-              initialParams={ExperimentSettings.initialParams}
-              initialParamsData={ExperimentSettings.initialParamsData}
-              stepSize={ExperimentSettings.stepSize}
-              totalSteps={ExperimentSettings.totalSteps}
-              handleSettingChange={ExperimentSettings.handleExecutionOrderChange}
-            />
+            {/* Render the current component in the modal */}
+            {currentComponent}
           </ModalBody>
-          <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={closeModal}>
-              Execute
-            </Button>
-            {/* You can add additional buttons here */}
-          </ModalFooter>
         </ModalContent>
       </Modal>
     </div>

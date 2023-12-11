@@ -26,10 +26,7 @@ function App() {
     { id: 7, name: 'American Magnets 430 #1', selected: false, executionOrder: 1 },
     { id: 8, name: 'American Magnets 430 #2', selected: false, executionOrder: 1 },
     { id: 9, name: 'American Magnets 430 #3', selected: false, executionOrder: 1 },
-  ]);
-  
-  // You can replace 'New Instrument 1', 'New Instrument 2', 'New Instrument 3' with the actual names of your new instruments.
-  
+  ]);  
 
   const [detectors, setDetectors] = useState([
     { id: 1, name: 'LightField', selected: false, executionOrder: 1 },
