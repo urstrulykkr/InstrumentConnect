@@ -1,5 +1,4 @@
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   FormControl,
   FormLabel,
@@ -11,13 +10,19 @@ import {
 } from '@chakra-ui/react';
 
 const AmericanMagnets = () => {
-  const [formData, setFormData] = useState({
-    voltage: '',
-    stepSize: '',
-    numberOfSteps: '',
-    magField: ''
-  });
+  const getInitialFormData = () => {
+    const savedData = localStorage.getItem('americanMagnetsFormData');
+    return savedData
+      ? JSON.parse(savedData)
+      : {
+          voltage: '',
+          stepSize: '',
+          numberOfSteps: '',
+          magField: '',
+        };
+  };
 
+  const [formData, setFormData] = useState(getInitialFormData);
   const [formErrors, setFormErrors] = useState({});
 
   const validateField = (name, value) => {
@@ -56,11 +61,16 @@ const AmericanMagnets = () => {
       }
     });
     setFormErrors(errors);
-  
+
     if (Object.keys(errors).length === 0) {
-    console.log('Form values:', formData);
+      console.log('Form values:', formData);
     }
-};
+  };
+
+  useEffect(() => {
+    // Save form data to localStorage whenever it changes
+    localStorage.setItem('americanMagnetsFormData', JSON.stringify(formData));
+  }, [formData]);
 
   return (
     <VStack spacing={4}>
@@ -75,7 +85,7 @@ const AmericanMagnets = () => {
         <FormErrorMessage>{formErrors.voltage}</FormErrorMessage>
       </FormControl>
 
-      <FormControl isInvalid={!!formErrors.angle}>
+      <FormControl isInvalid={!!formErrors.magField}>
         <FormLabel>Magnetic Field</FormLabel>
         <Input
           type="text"
@@ -83,7 +93,7 @@ const AmericanMagnets = () => {
           value={formData.magField}
           onChange={handleInputChange}
         />
-        <FormErrorMessage>{formErrors.angle}</FormErrorMessage>
+        <FormErrorMessage>{formErrors.magField}</FormErrorMessage>
       </FormControl>
 
       <FormControl isInvalid={!!formErrors.stepSize}>
@@ -97,15 +107,15 @@ const AmericanMagnets = () => {
         <FormErrorMessage>{formErrors.stepSize}</FormErrorMessage>
       </FormControl>
 
-      <FormControl isInvalid={!!formErrors.totalSteps}>
+      <FormControl isInvalid={!!formErrors.numberOfSteps}>
         <FormLabel>Number of Steps</FormLabel>
         <Input
           type="text"
           name="numberOfSteps"
-          value={formData.totalSteps}
+          value={formData.numberOfSteps}
           onChange={handleInputChange}
         />
-        <FormErrorMessage>{formErrors.totalSteps}</FormErrorMessage>
+        <FormErrorMessage>{formErrors.numberOfSteps}</FormErrorMessage>
       </FormControl>
 
       <HStack>

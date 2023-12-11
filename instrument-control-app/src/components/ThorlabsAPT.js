@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import {
   FormControl,
@@ -11,14 +10,20 @@ import {
 } from '@chakra-ui/react';
 
 const ThorlabsAPT = () => {
-  const [formData, setFormData] = useState({
-    voltage: '',
-    angle: '',
-    stepSize: '',
-    numberOfSteps: '',
-    position: '',
-  });
+  const getInitialFormData = () => {
+    const savedData = localStorage.getItem('thorlabsAPTFormData');
+    return savedData
+      ? JSON.parse(savedData)
+      : {
+          voltage: '',
+          angle: '',
+          stepSize: '',
+          numberOfSteps: '',
+          position: '',
+        };
+  };
 
+  const [formData, setFormData] = useState(getInitialFormData);
   const [formErrors, setFormErrors] = useState({});
 
   const validateField = (name, value) => {
@@ -46,7 +51,7 @@ const ThorlabsAPT = () => {
     }));
   };
 
-  const handleSubmit = () => {
+  const handleSave = () => {
     const errors = {};
     Object.keys(formData).forEach((name) => {
       const error = validateField(name, formData[name]);
@@ -55,19 +60,25 @@ const ThorlabsAPT = () => {
       }
     });
     setFormErrors(errors);
-  
+
     if (Object.keys(errors).length === 0) {
-    console.log('Form values:', formData);
+      console.log('Form values:', formData);
+      // Save form data to localStorage when the "Save" button is clicked
+      localStorage.setItem('thorlabsAPTFormData', JSON.stringify(formData));
     }
   };
-  
+
+  const handleReset = () => {
+    setFormData(getInitialFormData());
+    setFormErrors({});
+  }
 
   return (
     <VStack spacing={4}>
       <FormControl isInvalid={!!formErrors.voltage}>
         <FormLabel>Voltage</FormLabel>
         <Input
-          type="text"
+          type="number"
           name="voltage"
           value={formData.voltage}
           onChange={handleInputChange}
@@ -78,7 +89,7 @@ const ThorlabsAPT = () => {
       <FormControl isInvalid={!!formErrors.angle}>
         <FormLabel>Angle</FormLabel>
         <Input
-          type="text"
+          type="number"
           name="angle"
           value={formData.angle}
           onChange={handleInputChange}
@@ -89,7 +100,7 @@ const ThorlabsAPT = () => {
       <FormControl isInvalid={!!formErrors.stepSize}>
         <FormLabel>Step Size</FormLabel>
         <Input
-          type="text"
+          type="number"
           name="stepSize"
           value={formData.stepSize}
           onChange={handleInputChange}
@@ -100,7 +111,7 @@ const ThorlabsAPT = () => {
       <FormControl isInvalid={!!formErrors.numberOfSteps}>
         <FormLabel>Number of Steps</FormLabel>
         <Input
-          type="text"
+          type="number"
           name="numberOfSteps"
           value={formData.numberOfSteps}
           onChange={handleInputChange}
@@ -111,7 +122,7 @@ const ThorlabsAPT = () => {
       <FormControl isInvalid={!!formErrors.position}>
         <FormLabel>Position</FormLabel>
         <Input
-          type="text"
+          type="number"
           name="position"
           value={formData.position}
           onChange={handleInputChange}
@@ -120,8 +131,11 @@ const ThorlabsAPT = () => {
       </FormControl>
 
       <HStack>
-        <Button colorScheme="blue" onClick={handleSubmit}>
+        <Button colorScheme="blue" onClick={handleSave}>
           Save
+        </Button>
+        <Button colorScheme="red" onClick={handleReset}>
+          Reset
         </Button>
       </HStack>
     </VStack>

@@ -14,7 +14,6 @@ import {
 import ThorlabsAPT from './ThorlabsAPT'; // Import your custom components
 import Keithley from './Keithley';
 import AmericanMagnets from './AmericanMagnets';
-// import ComponentD from './ComponentD';
 
 const ExecutionOrder = ({ instruments, handleExecutionOrderChange }) => {
   const [isOpen, setIsOpen] = useState(false);

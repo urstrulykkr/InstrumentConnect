@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   FormControl,
   FormLabel,
@@ -10,14 +10,20 @@ import {
 } from '@chakra-ui/react';
 
 const Keithley = () => {
-  const [formData, setFormData] = useState({
-    voltage: '',
-    angle: '',
-    stepSize: '',
-    numberOfSteps: '',
-    position: '',
-  });
+  const getInitialFormData = () => {
+    const savedData = localStorage.getItem('keithleyFormData');
+    return savedData
+      ? JSON.parse(savedData)
+      : {
+          voltage: '',
+          angle: '',
+          stepSize: '',
+          numberOfSteps: '',
+          position: '',
+        };
+  };
 
+  const [formData, setFormData] = useState(getInitialFormData);
   const [formErrors, setFormErrors] = useState({});
 
   const validateField = (name, value) => {
@@ -55,11 +61,16 @@ const Keithley = () => {
       }
     });
     setFormErrors(errors);
-  
+
     if (Object.keys(errors).length === 0) {
-    console.log('Form values:', formData);
+      console.log('Form values:', formData);
     }
   };
+
+  useEffect(() => {
+    // Save form data to localStorage whenever it changes
+    localStorage.setItem('keithleyFormData', JSON.stringify(formData));
+  }, [formData]);
 
   return (
     <VStack spacing={4}>
@@ -114,7 +125,6 @@ const Keithley = () => {
         />
         <FormErrorMessage>{formErrors.numberOfSteps}</FormErrorMessage>
       </FormControl>
-
       <HStack>
         <Button colorScheme="blue" onClick={handleSubmit}>
           Save
