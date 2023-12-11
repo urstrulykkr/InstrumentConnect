@@ -71,9 +71,28 @@ const Keithley = () => {
           value={formData.voltage}
           onChange={handleInputChange}
         />
-        <FormErrorMessage>{formErrors.voltage}</FormErrorMessage>
+        <FormErrorMessage>{formErrors.angle}</FormErrorMessage>
       </FormControl>
-
+      <FormControl isInvalid={!!formErrors.angle}>
+        <FormLabel>Angle</FormLabel>
+        <Input
+          type="number"
+          name="angle"
+          value={formData.angle}
+          onChange={handleInputChange}
+        />
+        <FormErrorMessage>{formErrors.angle}</FormErrorMessage>
+      </FormControl>
+      <FormControl isInvalid={!!formErrors.position}>
+        <FormLabel>Position</FormLabel>
+        <Input
+          type="number"
+          name="position"
+          value={formData.position}
+          onChange={handleInputChange}
+        />
+        <FormErrorMessage>{formErrors.position}</FormErrorMessage>
+      </FormControl>
       <FormControl isInvalid={!!formErrors.stepSize}>
         <FormLabel>Step Size</FormLabel>
         <Input

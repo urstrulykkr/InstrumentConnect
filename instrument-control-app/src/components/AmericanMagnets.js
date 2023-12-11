@@ -13,7 +13,6 @@ import {
 const AmericanMagnets = () => {
   const [formData, setFormData] = useState({
     voltage: '',
-    totalSteps: '',
     stepSize: '',
     numberOfSteps: '',
     magField: ''
@@ -47,7 +46,7 @@ const AmericanMagnets = () => {
       [name]: error,
     }));
   };
-  
+
   const handleSubmit = () => {
     const errors = {};
     Object.keys(formData).forEach((name) => {
@@ -61,14 +60,14 @@ const AmericanMagnets = () => {
     if (Object.keys(errors).length === 0) {
     console.log('Form values:', formData);
     }
-  };
+};
 
   return (
     <VStack spacing={4}>
       <FormControl isInvalid={!!formErrors.voltage}>
         <FormLabel>Voltage</FormLabel>
         <Input
-          type="number"
+          type="text"
           name="voltage"
           value={formData.voltage}
           onChange={handleInputChange}
@@ -79,7 +78,7 @@ const AmericanMagnets = () => {
       <FormControl isInvalid={!!formErrors.angle}>
         <FormLabel>Magnetic Field</FormLabel>
         <Input
-          type="number"
+          type="text"
           name="magField"
           value={formData.magField}
           onChange={handleInputChange}
@@ -90,7 +89,7 @@ const AmericanMagnets = () => {
       <FormControl isInvalid={!!formErrors.stepSize}>
         <FormLabel>Step Size</FormLabel>
         <Input
-          type="number"
+          type="text"
           name="stepSize"
           value={formData.stepSize}
           onChange={handleInputChange}
@@ -101,8 +100,8 @@ const AmericanMagnets = () => {
       <FormControl isInvalid={!!formErrors.totalSteps}>
         <FormLabel>Number of Steps</FormLabel>
         <Input
-          type="number"
-          name="totalSteps"
+          type="text"
+          name="numberOfSteps"
           value={formData.totalSteps}
           onChange={handleInputChange}
         />
