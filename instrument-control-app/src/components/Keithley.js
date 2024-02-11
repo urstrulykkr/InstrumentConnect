@@ -19,7 +19,7 @@ const Keithley = () => {
           angle: '',
           stepSize: '',
           numberOfSteps: '',
-          position: '',
+          limitCurrent: '',
         };
   };
 
@@ -95,11 +95,11 @@ const Keithley = () => {
         <FormErrorMessage>{formErrors.angle}</FormErrorMessage>
       </FormControl>
       <FormControl isInvalid={!!formErrors.position}>
-        <FormLabel>Position</FormLabel>
+        <FormLabel>Limit Current</FormLabel>
         <Input
           type="number"
           name="position"
-          value={formData.position}
+          value={formData.limitCurrent}
           onChange={handleInputChange}
         />
         <FormErrorMessage>{formErrors.position}</FormErrorMessage>
