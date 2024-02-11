@@ -1,15 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Signika+Negative&display=swap');
 
- .instrument-list-container {
+.detectors-list-container {
     display: flex;
     flex-flow: row nowrap;
     color: #111827;
     padding: 20px;
     font-family: 'Signika Negative', sans-serif;
 
-} 
+}
 
-.instrument-list-container__title h3{
+.detectors-list-container__title h3{
     font-size: 18px;
     font-family: 'Signika Negative', sans-serif;
 }
+
